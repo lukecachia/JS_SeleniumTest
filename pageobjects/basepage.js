@@ -8,8 +8,8 @@ class BasePage{
         global.driver = driver;
     }
 
-    go_to_url(theURL){
-        driver.get(theURL);
+    navigateTo(url){
+        driver.get(url);
         driver.manage().window().maximize();
     }
 
@@ -24,6 +24,12 @@ class BasePage{
     clickById(id){
         driver.findElement(By.id(id)).click();
     }
+
+    // findElementByTextSendKeys(text){
+    //     this.sleep(3);
+    //     driver.findElement(By.xpath("//*[text()='" + text + "']")).sendKeys('test');
+    //     console.log("//*[text()='" + text + "']");
+    // }
 
     sleep(seconds){
         var e = new Date().getTime() + (seconds * 1000);

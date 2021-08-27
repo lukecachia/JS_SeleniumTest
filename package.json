@@ -2,9 +2,9 @@
   "name": "javascript_mocha_selenium",
   "version": "1.0.0",
   "description": "## Video Tutorial Link",
-  "main": "index.js",
+  "main": "TrendsTest.js",
   "scripts": {
-    "test": "mocha --timeout 60000"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",

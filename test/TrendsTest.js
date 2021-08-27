@@ -1,5 +1,6 @@
 const LandingPage = require('../pageobjects/LandingPage');
 const {By, until } = require('selenium-webdriver');
+const { sleep } = require('../pageobjects/LandingPage');
 
 
 describe('This is the describe block', function(){
@@ -15,26 +16,23 @@ describe('This is the describe block', function(){
     });
 
     it('POM Test Check', function(){
-        //Enter test steps
-        var baseurl = 'https://trends.google.com/';
-        LandingPage.go_to_url(baseurl);
+        LandingPage.navigateTo('https://trends.google.com/')
+
+        //Inputting Keyboard and pressing Enter
         LandingPage.inputTextAndClick(By.id('input-254'), 'Selenium WebDriver');
-        LandingPage.clickAndInputText(By.xpath('//*[@id="explorepage-content-header"]//div/button'), 'test');
-        LandingPage.inputText(By.className('trends-wrapper'), 'tesasdasd');
 
-        // homepage.enter_search('QA Underground Tutorial for beginners');
-    })
+        //Inputting the compare keyword
+        LandingPage.click(By.className('add-term-button'));
+        LandingPage.getListOfElementsAndClick(By.xpath('//input[contains(@id,"input-")]'), 'Javascript WebDriverIO');
 
-    it('POM Test Check 2', function(){
-        //Enter test steps
-        //var baseurl = 'https://trends.google.com/';
-        //homepage.inputTextAndClick(By.id('input-254'), 'Selenium WebDriver');
-    })
+        //Setting the country
+        LandingPage.click(By.className('compare-picker'));
+        LandingPage.inputTextAndSelectFromResult(By.css('div.hierarchy-autocomplete input'), 'New York');
 
-    it('POM Test Check 3', function(){
-        //Enter test steps
-        //var baseurl = 'https://trends.google.com/';
-        //homepage.clickAndInputText(By.className('add-term-text'), 'test');
-    })
+        //
+        LandingPage.click(By.id('select_value_label_11'));
+        //LandingPage.selectOptionFromDropdownByText(By.css('md-option.custom-date-picker-select-option div'), ' Past 90 days ');
+        LandingPage.selectTimeframeOptionByText('Past 90 days');
+    });
 
-})
+});
