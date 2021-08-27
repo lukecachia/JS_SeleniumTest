@@ -4,16 +4,12 @@ var BasePage = require ('./basepage');
 class LandingPage extends BasePage{
 
     inputTextAndClick(element, text){
-        driver.findElement(element).sendKeys(text);
-        driver.findElement(element).sendKeys(Key.RETURN);
+        driver.findElement(element).sendKeys(text, Key.RETURN);
     }
 
     clickAndInputText(element, text){
         //driver.sleep(15);
         driver.findElement(element).sendKeys(Key.RETURN);
-        
-        //driver.findElement(element).click();
-        //driver.findElement(element).sendKeys(text);
 
     }
 
@@ -27,6 +23,12 @@ class LandingPage extends BasePage{
         return driver.findElement(element).getText();
     }
 
+    /*
+    loops through the elements founds by the
+    details provided through the arguments and
+    inputs the text provided and clicks the auto-complete
+    suggestion (to save the result)
+    */
     getListOfElementsAndClick(element, text) {
         driver.findElements(element).then(function (elements){
             for(var i=0; i<elements.length; i++) {
@@ -36,15 +38,16 @@ class LandingPage extends BasePage{
             }
         });
         driver.findElement(By.className("autocomplete-entity")).click();
-        //this.sleep(10);
     }
 
+    /*
+    this method inputs the provided text in the element
+    found and clicks the short-listed result
+    */
     inputTextAndSelectFromResult(element, text){
         driver.findElement(element).sendKeys(text);
-        //driver.findElement(By.className('highlight')).click();
         //TODO find less fragile locator/way of seleting this element
         driver.findElement(By.className("hierarchy-picker-node")).click();
-        //element.sendKeys(Key.RETURN);
         
     }
 
@@ -82,14 +85,20 @@ class LandingPage extends BasePage{
         // })
     }
 
+
+    /*
+    this methods finds an elements that contains
+    the string provided and loops through all elements
+    in this case index 1 was required to select the needed timeframe
+    */
     selectTimeframeOptionByText(text) {
         this.sleep(5);
-        var xpath = '//div[contains(string(), "' + text + '")]';
-        console.log(xpath);
+        //var xpath = '//div[contains(string(), "' + text + '")]';
+        //console.log(xpath);
 
         driver.findElements(By.xpath('//div[contains(string(), "' + text + '")]')).then( function (elements) {
             for(var i=0; i<elements.length; i++) {
-                console.log('test');
+                //console.log('test');
                 if(i == 1) {
                     elements[i].click();
                 }
