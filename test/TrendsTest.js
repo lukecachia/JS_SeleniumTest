@@ -1,4 +1,4 @@
-const homepage = require('../pageobjects/homepage');
+const LandingPage = require('../pageobjects/LandingPage');
 const {By, until } = require('selenium-webdriver');
 
 
@@ -17,10 +17,10 @@ describe('This is the describe block', function(){
     it('POM Test Check', function(){
         //Enter test steps
         var baseurl = 'https://trends.google.com/';
-        homepage.go_to_url(baseurl);
-        homepage.inputTextAndClick(By.id('input-254'), 'Selenium WebDriver');
-        homepage.clickAndInputText(By.xpath('//*[@id="explorepage-content-header"]//div/button'), 'test');
-        homepage.inputText(By.className('trends-wrapper'), 'tesasdasd');
+        LandingPage.go_to_url(baseurl);
+        LandingPage.inputTextAndClick(By.id('input-254'), 'Selenium WebDriver');
+        LandingPage.clickAndInputText(By.xpath('//*[@id="explorepage-content-header"]//div/button'), 'test');
+        LandingPage.inputText(By.className('trends-wrapper'), 'tesasdasd');
 
         // homepage.enter_search('QA Underground Tutorial for beginners');
     })

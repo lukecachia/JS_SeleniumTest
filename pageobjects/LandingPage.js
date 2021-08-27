@@ -1,7 +1,7 @@
 const {Key} = require('selenium-webdriver');
-var BasePage = require ('../pageobjects/basepage');
+var BasePage = require ('./basepage');
 
-class HomePage extends BasePage{
+class LandingPage extends BasePage{
 
     searchField = 'input[name=q]';
 
@@ -35,4 +35,4 @@ class HomePage extends BasePage{
         return driver.findElement(element).getText();
     }
 }
-module.exports = new HomePage();
+module.exports = new LandingPage();
