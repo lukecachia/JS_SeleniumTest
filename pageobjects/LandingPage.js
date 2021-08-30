@@ -1,4 +1,5 @@
 const {Key, By, TouchSequence} = require('selenium-webdriver');
+const actions = require('selenium-webdriver/lib/actions');
 var BasePage = require ('./basepage');
 
 class LandingPage extends BasePage{
@@ -13,7 +14,7 @@ class LandingPage extends BasePage{
 
     }
 
-    click(element) {
+    clickBy(element) {
         this.sleep(5);
         driver.findElement(element).click();
         this.sleep(5);
@@ -73,18 +74,7 @@ class LandingPage extends BasePage{
                 });
             }
         });
-
-        // driver.findElements(element).then(function (listElems) {
-        //     for(var i=0; i<listElems.length; i++) {
-        //         console.log('hello');
-        //         if(listElems[i].getText() == text){
-        //             console.log('hello-if');
-        //             listElems[i].click();
-        //         }
-        //     }
-        // })
     }
-
 
     /*
     this methods finds an elements that contains
@@ -92,19 +82,45 @@ class LandingPage extends BasePage{
     in this case index 1 was required to select the needed timeframe
     */
     selectTimeframeOptionByText(text) {
-        this.sleep(5);
+        this.sleep(3);
         //var xpath = '//div[contains(string(), "' + text + '")]';
         //console.log(xpath);
 
-        driver.findElements(By.xpath('//div[contains(string(), "' + text + '")]')).then( function (elements) {
+        // driver.findElements(By.xpath('//div[contains(string(), "' + text + '")]')).then(function (elements) {
+        //     for(var i=0; i<elements.length; i++) {
+        //         console.log('test');
+        //         if(i == 1) {
+        //             elements[i].click();
+        //         }
+        //     }
+        // });
+
+        driver.findElements(By.css('md-option.custom-date-picker-select-option div')).then(function (elements) {
             for(var i=0; i<elements.length; i++) {
-                //console.log('test');
-                if(i == 1) {
+                if(i == 6) {
                     elements[i].click();
                 }
             }
         });
     }
+
+    hoverOverElement2(){
+        //this.sleep(5);
+        //const actions = driver.actions({bridge: true});
+        // driver.findElement(By.className('progress-bar-multi-heat-volume')).then(function (element) {
+        //     actions.move({duration: 50000, origin: element, x:0, y:0}).perform();
+        // });
+
+        //driver.actions().move({duration:5000, origin:element}).perform();
+
+        driver.findElement(By.className('progress-bar-wrapper multi-heat-progress-bar')).then(function (element) {
+            actions({async:true}).move({origin:element}).perform();
+        });
+
+        this.sleep(5);
+
+    }
+
 }
 
 module.exports = new LandingPage();
