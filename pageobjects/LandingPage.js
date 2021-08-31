@@ -95,7 +95,7 @@ class LandingPage extends BasePage{
         //     }
         // });
 
-        driver.findElements(By.css('md-option.custom-date-picker-select-option div')).then(function (elements) {
+        driver.findElements(By.className('custom-date-picker-select-option')).then(function (elements) {
             for(var i=0; i<elements.length; i++) {
                 if(i == 6) {
                     elements[i].click();
